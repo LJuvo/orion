@@ -1,10 +1,10 @@
-# vueele
+# orion
 
-> An electron-vue project
+> Orion Conquest Project
 
 #### Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
