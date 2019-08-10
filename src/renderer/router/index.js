@@ -4,8 +4,6 @@ import { routers } from "./defines";
 
 Vue.use(Router)
 const RouterConfig = {
-    mode: "history",
-    base: process.env.BASE_URL,
     routes: routers
 };
 

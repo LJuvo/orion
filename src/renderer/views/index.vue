@@ -3,26 +3,47 @@
     <div class="orion-header">
       <div class="orion-header-title">Drag</div>
       <div class="orion-header-btngroup">
-        <Button @click="changeWinMin()">最小化</Button>
-        <Button v-if="maxState" @click="changeWinMax(false)">恢复</Button>
-        <Button v-else @click="changeWinMax(true)">最大化</Button>
+        <Icon
+          class="orion-header-btngroup-handle"
+          :size="22"
+          type="ios-remove"
+          @click="changeWinMin()"
+        />
+        <Icon
+          class="orion-header-btngroup-handle"
+          :size="16"
+          type="ios-browsers-outline"
+          v-if="maxState"
+          @click="changeWinMax(false)"
+        />
+
+        <Icon
+          class="orion-header-btngroup-handle"
+          :size="16"
+          type="ios-square-outline"
+          v-else
+          @click="changeWinMax(true)"
+        />
 
         <!-- <Button @click="changeWinHide(true)">显示</Button>
         <Button @click="changeWinHide(false)">隐藏</Button>-->
-        <Button @click="changeWinClose()">关闭</Button>
+        <Icon
+          class="orion-header-btngroup-handle"
+          :size="24"
+          type="ios-close"
+          @click="changeWinClose()"
+        />
       </div>
     </div>
     <div class="orion-content">
       <div class="orion-content-left">
-        <div v-for="(it,ke) in routerRes" :key="ke" @click="onRouterPush(it.path)">
-          <span>{{it.name}}</span>
+        <div v-for="(item,key) in routerRes" :key="key" @click="onRouterPush(item.path)">
+          <span>{{item.name}}</span>
         </div>
       </div>
       <div class="orion-content-wrapper">
-        <h1>Views</h1>
         <router-view></router-view>
       </div>
-      <!-- <div class="orion-content-right"></div> -->
     </div>
     <div class="orion-footer">
       <span class="orion-footer-version">orion @verson 0.0.1</span>
@@ -79,6 +100,7 @@ export default {
 .orion {
   width: 100%;
   height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -87,7 +109,7 @@ export default {
 }
 .orion-header {
   width: 100%;
-  height: 50px;
+  height: 30px;
   background: rgb(30, 30, 30);
   display: flex;
   flex-direction: row;
@@ -99,6 +121,14 @@ export default {
 }
 .orion-header-btngroup {
   display: flex;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+}
+.orion-header-btngroup-handle {
+  cursor: hand;
+  cursor: pointer;
+  margin: 0 2px;
 }
 .orion-content {
   width: 100%;
@@ -108,10 +138,10 @@ export default {
   justify-content: space-between;
 }
 .orion-content-left {
-  width: 240px;
+  width: 40px;
   height: 100%;
-  overflow: hidden;
-  overflow-y: auto;
+  overflow: auto;
+  /* overflow-y: auto; */
   background: rgb(38, 38, 38);
 }
 .orion-content-wrapper {
@@ -119,7 +149,7 @@ export default {
   height: 100%;
   overflow: hidden;
   overflow-y: auto;
-  background: rgb(30, 30, 30);
+  /* background: rgb(30, 30, 30); */
 }
 .orion-content-right {
   width: 300px;
@@ -129,7 +159,8 @@ export default {
 }
 .orion-footer {
   width: 100%;
-  height: 30px;
+  height: 25px;
+  overflow: hidden;
 
   background: rgb(74, 74, 74);
   display: flex;
@@ -138,11 +169,11 @@ export default {
   font-size: 12px;
 }
 .orion-footer-version {
-  line-height: 30px;
+  line-height: 25px;
   padding-left: 10px;
 }
 .orion-footer-copyright {
-  line-height: 30px;
+  line-height: 25px;
   padding-right: 20px;
 }
 </style>
