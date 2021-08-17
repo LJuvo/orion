@@ -1,12 +1,27 @@
 <template>
-  <div>
-    <div>NGC 2024</div>
-    <div id class="ngc-pane"></div>
-  </div>
+  <flex-layout class="flex-full">
+    <section class="flex-h-full flex-menu flex justify-center items-center">
+      <div>NGC 2024</div>
+    </section>
+    <section class="flex-h-full flex-1 flex-flow flex-flow-y">
+      <div class="ngc-pane"></div>
+
+      <div>PNG Tools</div>
+    </section>
+    <flex-layout class="flex-h-full flex-menu flex-flow-y" col>
+      <div>svga tools one</div>
+      <div>svga tools two</div>
+    </flex-layout>
+  </flex-layout>
 </template>
 
 <script>
-export default {};
+import FlexLayout from "../../components/layout/flex";
+export default {
+  components: {
+    "flex-layout": FlexLayout,
+  },
+};
 </script>
 
 <style>

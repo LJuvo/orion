@@ -6,7 +6,7 @@
 
 <script>
 export default {
-  name: "vueele"
+  name: "starera",
 };
 </script>
 
@@ -21,5 +21,11 @@ export default {
 ::-webkit-scrollbar-thumb {
   border-radius: 10px;
   background-color: #555;
+}
+.ivu-poptip-inner {
+  background: #1e1e1e !important;
+}
+.ivu-poptip-arrow:after {
+  border-top-color: #1e1e1e !important;
 }
 </style>

@@ -1,7 +1,7 @@
 <template>
   <div class="orion">
     <div class="orion-header">
-      <div class="orion-header-title">Drag</div>
+      <div class="orion-header-title">STARERA</div>
       <div class="orion-header-btngroup">
         <Icon
           class="orion-header-btngroup-handle"
@@ -24,9 +24,6 @@
           v-else
           @click="changeWinMax(true)"
         />
-
-        <!-- <Button @click="changeWinHide(true)">显示</Button>
-        <Button @click="changeWinHide(false)">隐藏</Button>-->
         <Icon
           class="orion-header-btngroup-handle"
           :size="24"
@@ -37,16 +34,24 @@
     </div>
     <div class="orion-content">
       <div class="orion-content-left">
-        <div v-for="(item,key) in routerRes" :key="key" @click="onRouterPush(item.path)">
-          <span>{{item.name}}</span>
-        </div>
+        <Tooltip
+          v-for="(item, key) in routerRes"
+          :key="key"
+          :content="item.name"
+          placement="right"
+        >
+          <div class="orion-content-icon" @click="onRouterPush(item.path)">
+            <!-- <span>{{item.name}}</span> -->
+            <Icon :size="26" color="#999" :type="item.icon" />
+          </div>
+        </Tooltip>
       </div>
       <div class="orion-content-wrapper">
         <router-view></router-view>
       </div>
     </div>
     <div class="orion-footer">
-      <span class="orion-footer-version">orion @verson 0.0.1</span>
+      <span class="orion-footer-version">orion to svga @verson 0.0.1</span>
       <span class="orion-footer-copyright">
         <!-- Copyright © 2019 - 2119 JuvoS. All Rights Reserved.JuvoS / License MIT -->
         Copyright © 2019 JuvoS All Rights Reserved.
@@ -63,13 +68,13 @@ import { fail } from "assert";
 export default {
   data() {
     return {
-      maxState: false
+      maxState: false,
     };
   },
   computed: {
     routerRes() {
       return appRouter.children;
-    }
+    },
   },
   mounted() {},
   methods: {
@@ -87,12 +92,12 @@ export default {
     },
     changeWinClose() {
       ipcRenderer.send("close");
-    }
+    },
     // changeWinHide(v) {
     //   if (v) return ipcRenderer.send("show");
     //   return ipcRenderer.send("hide");
     // }
-  }
+  },
 };
 </script>
 
@@ -117,6 +122,9 @@ export default {
 }
 .orion-header-title {
   flex: 1;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
   -webkit-app-region: drag;
 }
 .orion-header-btngroup {
@@ -132,7 +140,7 @@ export default {
 }
 .orion-content {
   width: 100%;
-  height: calc(100vh - 80px);
+  height: calc(100vh - 55px);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -143,6 +151,14 @@ export default {
   overflow: auto;
   /* overflow-y: auto; */
   background: rgb(38, 38, 38);
+}
+.orion-content-icon {
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 .orion-content-wrapper {
   flex: 1;
@@ -175,5 +191,49 @@ export default {
 .orion-footer-copyright {
   line-height: 25px;
   padding-right: 20px;
+}
+</style>
+<style>
+.text-center {
+  text-align: center;
+}
+.p-10 {
+  padding: 10px;
+}
+.px-10 {
+  padding: 0 10px;
+}
+.py-10 {
+  padding: 10px 0;
+}
+.pl-10 {
+  padding-left: 10px;
+}
+.pr-10 {
+  padding-right: 10px;
+}
+.m-5 {
+  margin: 5px;
+}
+.mx-5 {
+  margin: 0 5px;
+}
+.my-5 {
+  margin: 5px 0;
+}
+.mt-5 {
+  margin-bottom: 5px;
+}
+.m-10 {
+  margin: 10px;
+}
+.mx-10 {
+  margin: 0 10px;
+}
+.my-10 {
+  margin: 10px 0;
+}
+.mt-10 {
+  margin-bottom: 10px;
 }
 </style>
