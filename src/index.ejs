@@ -10,8 +10,43 @@
     </script>
     <% } %>
   </head>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600;700&display=swap");
+    :root {
+      --body-bg-color: #e4e6f5;
+      --border-color: #e5e4e9;
+      --theme-bg-color: #fff;
+      --body-color: #1b1f31;
+      --main-color: #7a7e9d;
+      --main-light-color: #a1a4b9;
+      --title-color: #979dc3;
+      --body-font: "Jost", sans-serif;
+      --button-bg-color: #eaeefc;
+      --button-color: #4d76fd;
+      --unselected-mail: #f1f2f7;
+      --calendar-border-color: #cbcfe0;
+      --main-container-bg: #f0f0f7;
+    }
+
+    * {
+      outline: none;
+      box-sizing: border-box;
+    }
+
+    html {
+      box-sizing: border-box;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      font-family: var(--body-font);
+      background-color: var(--body-bg-color);
+      color: var(--body-color);
+      font-size: 15px;
+    }
+  </style>
   <body>
-    <div id="app"></div>
+    <div id="orion"></div>
     <!-- Set `__static` path to static files in production -->
 
     <!-- webpack builds are automatically injected -->

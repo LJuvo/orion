@@ -1,7 +1,7 @@
 <template>
   <div class="orion">
-    <div class="orion-header">
-      <div class="orion-header-title">STARERA</div>
+    <!-- <div class="orion-header">
+      <div class="orion-header-title">STARERA LAYOUT</div>
       <div class="orion-header-btngroup">
         <Icon
           class="orion-header-btngroup-handle"
@@ -31,45 +31,59 @@
           @click="changeWinClose()"
         />
       </div>
-    </div>
+    </div> -->
     <div class="orion-content">
-      <div class="orion-content-left">
-        <Tooltip
-          v-for="(item, key) in routerRes"
-          :key="key"
-          :content="item.name"
-          placement="right"
-        >
-          <div class="orion-content-icon" @click="onRouterPush(item.path)">
-            <!-- <span>{{item.name}}</span> -->
-            <Icon :size="26" color="#999" :type="item.icon" />
-          </div>
-        </Tooltip>
-      </div>
+      <flex-layout
+        col
+        class="orion-content-left"
+        style="-webkit-app-region: drag;"
+      >
+        <flex-layout col>
+          <Tooltip
+            v-for="(item, key) in routerRes"
+            :key="key"
+            :content="item.name"
+            placement="right"
+          >
+            <div class="orion-content-icon" @click="onRouterPush(item.path)">
+              <!-- <span>{{item.name}}</span> -->
+              <Icon :size="24" color="#979dc3" :type="item.icon" />
+            </div>
+          </Tooltip>
+        </flex-layout>
+        <flex-layout col class="flex-1 justify-end">
+          <Tooltip content="关闭 / Close" placement="right">
+            <div class="orion-content-icon">
+              <Icon :size="20" type="md-power" @click="changeWinClose()" />
+            </div>
+          </Tooltip>
+        </flex-layout>
+      </flex-layout>
       <div class="orion-content-wrapper">
         <router-view></router-view>
       </div>
     </div>
-    <div class="orion-footer">
-      <span class="orion-footer-version">orion to svga @verson 0.0.1</span>
+    <!-- <div class="orion-footer">
+      <span class="orion-footer-version">starera for layout @verson 1.0.0</span>
       <span class="orion-footer-copyright">
-        <!-- Copyright © 2019 - 2119 JuvoS. All Rights Reserved.JuvoS / License MIT -->
-        Copyright © 2019 JuvoS All Rights Reserved.
+        Copyright © 2021 JuvoS All Rights Reserved.
       </span>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
 import { appRouter } from "../router/defines";
-// import WindowUtil from "../common/WindowUtil";
 import { ipcRenderer } from "electron";
-import { fail } from "assert";
+import FlexLayout from "@/components/layout/flex";
 export default {
   data() {
     return {
       maxState: false,
     };
+  },
+  components: {
+    "flex-layout": FlexLayout,
   },
   computed: {
     routerRes() {
@@ -93,15 +107,15 @@ export default {
     changeWinClose() {
       ipcRenderer.send("close");
     },
-    // changeWinHide(v) {
-    //   if (v) return ipcRenderer.send("show");
-    //   return ipcRenderer.send("hide");
-    // }
   },
 };
 </script>
 
 <style>
+:root {
+  --white: #ffffff;
+  --main-title-bg: var(--white);
+}
 .orion {
   width: 100%;
   height: 100vh;
@@ -109,16 +123,17 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  color: rgb(234, 234, 234);
-  background: rgb(40, 40, 40);
+  color: var(--body-color);
+  background: var(--body-bg-color);
 }
 .orion-header {
   width: 100%;
   height: 30px;
-  background: rgb(30, 30, 30);
+  background: var(--main-title-bg);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-bottom: 1px solid var(--border-color);
 }
 .orion-header-title {
   flex: 1;
@@ -129,7 +144,6 @@ export default {
 }
 .orion-header-btngroup {
   display: flex;
-  color: #ffffff;
   display: flex;
   align-items: center;
 }
@@ -140,17 +154,19 @@ export default {
 }
 .orion-content {
   width: 100%;
-  height: calc(100vh - 55px);
+  flex: 1;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .orion-content-left {
-  width: 40px;
+  -webkit-app-region: drag;
+  width: 41px;
   height: 100%;
   overflow: auto;
   /* overflow-y: auto; */
-  background: rgb(38, 38, 38);
+  background: var(--main-title-bg);
+  border-right: 1px solid var(--border-color);
 }
 .orion-content-icon {
   width: 40px;
@@ -177,8 +193,10 @@ export default {
   width: 100%;
   height: 25px;
   overflow: hidden;
+  color: var(--main-color);
 
-  background: rgb(74, 74, 74);
+  background: var(--main-title-bg);
+  border-top: 1px solid var(--border-color);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
