@@ -41,6 +41,13 @@ export const appRouter = {
       // name: 'landing-page',
       component: require("@/components/LandingPage").default,
     },
+    {
+      path: "suspension",
+      name: "suspension",
+      icon: "ios-help-circle",
+      // name: 'landing-page',
+      component: require("@/components/LandingPage").default,
+    },
   ],
 };
 

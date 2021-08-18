@@ -52,6 +52,11 @@
           </Tooltip>
         </flex-layout>
         <flex-layout col class="flex-1 justify-end">
+          <Tooltip content="打开" placement="right">
+            <div class="orion-content-icon">
+              <Icon :size="20" type="md-power" @click="openWindows()" />
+            </div>
+          </Tooltip>
           <Tooltip content="关闭 / Close" placement="right">
             <div class="orion-content-icon">
               <Icon :size="20" type="md-power" @click="changeWinClose()" />
@@ -106,6 +111,10 @@ export default {
     },
     changeWinClose() {
       ipcRenderer.send("close");
+    },
+    openWindows() {
+      // ipcRenderer.send("showSuspensionWindow");createSuspensionMenu
+      ipcRenderer.send("createSuspensionMenu");
     },
   },
 };
